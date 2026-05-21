@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-stock-up: #ef4444; /* 매수 / 상승 (빨간색) */
+  --color-stock-down: #3b82f6; /* 매도 / 하락 (파란색) */
+  --color-dark-bg: #111827; /* 다크모드 배경색 */
+}
+
+body {
+  margin: 0;
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
