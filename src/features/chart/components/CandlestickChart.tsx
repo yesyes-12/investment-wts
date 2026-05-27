@@ -2,8 +2,10 @@
 
 import { useParams } from "react-router-dom";
 import { useCandlestickChart } from "../hooks/useCandlestickChart";
+import { useTickerStore } from "../../ticker/stores/useTickerStore";
+import { useEffect, useRef } from "react";
 
-const DUMMY_DATA = [
+const INITIAL_DATA = [
   {
     time: "2026-05-19" as any,
     open: 92000000,
@@ -36,19 +38,48 @@ const DUMMY_DATA = [
 
 export const CandlestickChart = () => {
   const { symbol } = useParams<{ symbol: string }>();
-  const { chartContainerRef } = useCandlestickChart(DUMMY_DATA);
+  const currentSymbol = symbol || "";
+
+  const { chartContainerRef, updateCandle } = useCandlestickChart(INITIAL_DATA);
+  const livePrice = useTickerStore((state) => state.prices[currentSymbol]);
+  const liveCandleRef = useRef({ ...INITIAL_DATA[INITIAL_DATA.length - 1] });
+
+  useEffect(() => {
+    if (!livePrice) return;
+
+    const currentCandle = liveCandleRef.current;
+
+    currentCandle.close = livePrice;
+
+    if (livePrice > currentCandle.high) currentCandle.high = livePrice;
+    if (livePrice < currentCandle.low) currentCandle.low = livePrice;
+
+    updateCandle(currentCandle);
+  }, [livePrice, updateCandle]);
 
   return (
-    <div className='w-full bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-xl'>
+    <div className='w-full h-full min-h-[400px] bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-xl flex flex-col'>
       <div className='p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50'>
         <h2 className='text-lg font-bold text-slate-200'>
-          {symbol}/KRW 실시간 차트
+          {currentSymbol}/KRW 실시간 차트
         </h2>
-        <span className='text-xs font-semibold px-2.5 py-1 bg-red-500/10 text-red-400 rounded-md'>
-          Live
-        </span>
+        <div className='flex items-center gap-3'>
+          {/* 실시간 가격 깜빡임 UI 바인딩 */}
+          <span
+            className={`text-lg font-bold ${
+              livePrice > liveCandleRef.current.open
+                ? "text-red-500"
+                : "text-blue-500"
+            }`}
+          >
+            {livePrice ? livePrice.toLocaleString() : "로딩중..."}
+          </span>
+          <span className='text-xs font-semibold px-2.5 py-1 bg-red-500/10 text-red-400 rounded-md animate-pulse'>
+            Live
+          </span>
+        </div>
       </div>
-      <div ref={chartContainerRef} className='w-full' />
+      <div ref={chartContainerRef} className='flex-1 w-full' />
     </div>
   );
 };

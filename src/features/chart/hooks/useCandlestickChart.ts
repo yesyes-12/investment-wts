@@ -47,5 +47,11 @@ export const useCandlestickChart = (data: any[]) => {
     };
   }, [data]);
 
-  return { chartContainerRef };
+  const updateCandle = (barData: any) => {
+    if (seriesRef.current) {
+      seriesRef.current.update(barData);
+    }
+  };
+
+  return { chartContainerRef, updateCandle };
 };
