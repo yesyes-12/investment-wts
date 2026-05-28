@@ -18,7 +18,7 @@ const Layout = () => {
         <Link to='/history'>투자 내역</Link>
       </nav>
 
-      <main className='p-6 md:p-8'>
+      <main>
         <Outlet />
       </main>
     </div>
@@ -37,11 +37,11 @@ const router = createBrowserRouter([
       {
         path: "trade/:symbol",
         element: (
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+          <div className='grid grid-cols-1 lg:grid-cols-3'>
             <div className='lg:col-span-2'>
               <CandlestickChart />
             </div>
-            <div className='bg-slate-900 p-4 rounded-xl border border-slate-800 text-slate-500 text-center py-20'>
+            <div className='bg-slate-900 p-4 border border-slate-800 text-slate-500 text-center py-20'>
               호가창 영역
             </div>
           </div>
