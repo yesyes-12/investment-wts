@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import { CandlestickChart } from "./features/chart/components/CandlestickChart";
 import { useThrottledTickerWebSocket } from "./features/ticker/hooks/useThrottledTickerWebSocket";
+import { OrderBook } from "./features/order/OrderBook";
 
 const Layout = () => {
   useThrottledTickerWebSocket("ws://localhost:8000/ws/ticker");
@@ -41,8 +42,8 @@ const router = createBrowserRouter([
             <div className='lg:col-span-2'>
               <CandlestickChart />
             </div>
-            <div className='bg-slate-900 p-4 border border-slate-800 text-slate-500 text-center py-20'>
-              호가창 영역
+            <div className='lg: col-span-1'>
+              <OrderBook />
             </div>
           </div>
         ),
