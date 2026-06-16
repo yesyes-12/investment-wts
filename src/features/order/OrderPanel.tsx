@@ -106,26 +106,36 @@ export const OrderPanel = ({ currentPrice, userBalance }: OrderPanelProps) => {
         <span>주</span>
       </div>
 
-      <div className='bg-[#111d30] py-2 px-2.5 text-wts-text-tertiary text-xs'>
-        <div>
+      <div className='bg-[#111d30] py-2 px-2.5 text-wts-text-tertiary text-xs flex flex-col gap-1 rounded-sm'>
+        <div className='flex justify-between'>
           <span>주문단가</span>
-          <span>시장가</span>
+          <span className='text-wts-text-primary'>시장가</span>
         </div>
-        <div>
+        <div className='flex justify-between'>
           <span>주문수량</span>
-          <span>주</span>
+          <span className='text-wts-text-primary'>{quantity}주</span>
         </div>
-        <div>
-          <span>주문총액</span>
-          <span>{(currentPrice || 0).toLocaleString()}원</span>
+        <div className='flex justify-between pt-1 border-t border-wts-border'>
+          <span className='font-semibold text-wts-text-secondary'>
+            주문총액
+          </span>
+          <span className={`${currentTheme.text} font-bold text-[0.9rem]`}>
+            {(currentPrice || 0).toLocaleString()}원
+          </span>
         </div>
-        <div>
+        <div className='flex justify-between'>
           <span>주문가능 예수금</span>
-          <span>{userBalance.toLocaleString()}원</span>
+          <span className='text-wts-text-muted'>
+            {userBalance.toLocaleString()}원
+          </span>
         </div>
       </div>
 
-      <button>매수</button>
+      <button
+        className={`h-10 rounded-[5px] text-[#ffffff] font-bold text-base transition-colors duration-300 ${currentTheme.bg}`}
+      >
+        매수 {quantity}주
+      </button>
     </div>
   );
 };

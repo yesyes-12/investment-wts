@@ -1,6 +1,7 @@
 // src/feauters/order/OrderBookList.tsx
 import type { OrderBookUnit } from "../ticker/stores/useTickerStore";
 import { OrderBookRow } from "./OrderBookRow";
+import { RiTriangleFill } from "react-icons/ri";
 
 interface OrderBookListProps {
   asks: OrderBookUnit[];
@@ -28,7 +29,7 @@ export const OrderBookList = ({
 
   return (
     <div className='bg-wts-bg overflow-hidden shadow-2xl'>
-      <div className='px-4 py-2.5 bg-wts-card flex justify-between text-xs text-wts-text-secondary border-b border-wts-border'>
+      <div className='px-3 h-8 bg-wts-card flex justify-between items-center text-xs text-wts-text-secondary border-b border-wts-border'>
         <span className='font-semibold'>호가창</span>
         <div className='flex gap-2'>
           <span className='text-wts-text-tertiary'>
@@ -58,11 +59,13 @@ export const OrderBookList = ({
         ))}
       </div>
 
-      <div className='py-2 flex justify-center text-center items-center bg-[#111d30] border-y border-wts-border gap-2'>
-        <span className='text-lg font-bold'>
+      <div className='h-9 box-border flex justify-center text-center items-center bg-[#111d30] border-y border-wts-border gap-2'>
+        <span className='text-base font-bold'>
           {currentPrice?.toLocaleString()}
         </span>
-        <span className='text-xs'>▲ +2,500 (+3.43%)</span>
+        <span className='flex items-center text-xs'>
+          <RiTriangleFill /> +2,500 (+3.43%)
+        </span>
       </div>
 
       <div className='flex flex-col'>
