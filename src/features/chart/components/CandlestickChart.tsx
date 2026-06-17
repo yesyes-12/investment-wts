@@ -58,27 +58,7 @@ export const CandlestickChart = () => {
   }, [livePrice, updateCandle]);
 
   return (
-    <div className='w-full h-full min-h-[400px] bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-xl flex flex-col'>
-      <div className='p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900/50'>
-        <h2 className='text-lg font-bold text-slate-200'>
-          {currentSymbol}/KRW 실시간 차트
-        </h2>
-        <div className='flex items-center gap-3'>
-          {/* 실시간 가격 깜빡임 UI 바인딩 */}
-          <span
-            className={`text-lg font-bold ${
-              livePrice > liveCandleRef.current.open
-                ? "text-red-500"
-                : "text-blue-500"
-            }`}
-          >
-            {livePrice ? livePrice.toLocaleString() : "로딩중..."}
-          </span>
-          <span className='text-xs font-semibold px-2.5 py-1 bg-red-500/10 text-red-400 rounded-md animate-pulse'>
-            Live
-          </span>
-        </div>
-      </div>
+    <div className='w-full h-full min-h-[400px] bg-slate-900 overflow-hidden border border-slate-800 shadow-xl flex flex-col'>
       <div ref={chartContainerRef} className='flex-1 w-full' />
     </div>
   );

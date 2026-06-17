@@ -1,15 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --color-stock-up: #ef4444; /* 매수 / 상승 (빨간색) */
-  --color-stock-down: #3b82f6; /* 매도 / 하락 (파란색) */
-  --color-dark-bg: #111827; /* 다크모드 배경색 */
+  --color-wts-bg: #0d1421;
+  --color-wts-card: #0f1624;
+  --color-wts-border: #1c2840;
+
+  --color-wts-bid: #f04e5a;
+  --color-wts-ask: #3d7ef5;
+  --color-wts-ma5: #f0b90b;
+  --color-wts-ma20: #9b7cff;
+
+  --color-wts-text-primary: #dde1e8;
+  --color-wts-text-secondary: #a0b0cc;
+  --color-wts-text-muted: #8899b4;
+  --color-wts-text-tertiary: #6b7a96;
+  --color-wts-text-summary: #3d4f6a;
 }
 
 body {
   margin: 0;
-  background-color: #0f172a;
-  color: #f8fafc;
+  background-color: var(--color-wts-bg);
+  color: var(--color-wts-text-primary);
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    "Apple SD Gothic Neo",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
