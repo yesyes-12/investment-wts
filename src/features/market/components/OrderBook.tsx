@@ -1,9 +1,9 @@
-// src/features/order/OrderBook.tsx
+// src/features/market/components/OrderBook.tsx
 
 import { useParams } from "react-router-dom";
-import { useTickerStore } from "../ticker/stores/useTickerStore";
+import { useTickerStore } from "../stores/useTickerStore";
 import { OrderBookList } from "./OrderBookList";
-import { OrderPanel } from "./OrderPanel";
+import { OrderPanel } from "../../order/components/OrderPanel";
 
 export const OrderBook = () => {
   const { symbol } = useParams<{ symbol: string }>();

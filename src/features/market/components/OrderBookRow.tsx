@@ -1,4 +1,4 @@
-// src/features/chart/orderbook/OrderBookRow.tsx
+// src/features/market/components/OrderBookRow.tsx
 import React from "react";
 
 interface OrderBookRowProps {

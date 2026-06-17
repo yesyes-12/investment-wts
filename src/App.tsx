@@ -5,8 +5,8 @@ import {
   Link,
 } from "react-router-dom";
 import { CandlestickChart } from "./features/chart/components/CandlestickChart";
-import { useThrottledTickerWebSocket } from "./features/ticker/hooks/useThrottledTickerWebSocket";
-import { OrderBook } from "./features/order/OrderBook";
+import { useThrottledTickerWebSocket } from "./features/market/hooks/useThrottledTickerWebSocket";
+import { OrderBook } from "./features/market/components/OrderBook";
 
 const Layout = () => {
   useThrottledTickerWebSocket("ws://localhost:8000/ws/ticker");

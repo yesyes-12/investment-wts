@@ -1,4 +1,4 @@
-// src/features/ticker/hooks/useThrottledTickerWebSocket.ts
+// src/features/market/hooks/useThrottledTickerWebSocket.ts
 import { useEffect, useRef } from "react";
 import { useTickerStore } from "../stores/useTickerStore";
 

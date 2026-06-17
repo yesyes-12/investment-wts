@@ -1,4 +1,4 @@
-// src/features/ticker/stores/useTickerStore.ts
+// src/features/market/stores/useTickerStore.ts
 import { create } from "zustand";
 
 // 단일 호가 정보

@@ -1,5 +1,5 @@
-// src/feauters/order/OrderBookList.tsx
-import type { OrderBookUnit } from "../ticker/stores/useTickerStore";
+// src/feauters/market/components/OrderBookList.tsx
+import type { OrderBookUnit } from "../stores/useTickerStore";
 import { OrderBookRow } from "./OrderBookRow";
 import { RiTriangleFill } from "react-icons/ri";
 

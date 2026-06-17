@@ -2,7 +2,7 @@
 
 import { useParams } from "react-router-dom";
 import { useCandlestickChart } from "../hooks/useCandlestickChart";
-import { useTickerStore } from "../../ticker/stores/useTickerStore";
+import { useTickerStore } from "../../market/stores/useTickerStore";
 import { useEffect, useRef } from "react";
 
 const INITIAL_DATA = [

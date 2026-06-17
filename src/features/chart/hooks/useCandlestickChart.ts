@@ -1,3 +1,4 @@
+// src/features/chart/hooks/index.ts
 import { useEffect, useRef } from "react";
 import { createChart, CandlestickSeries } from "lightweight-charts";
 import type { IChartApi, ISeriesApi } from "lightweight-charts";
