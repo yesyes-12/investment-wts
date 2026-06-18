@@ -7,36 +7,48 @@ export interface OrderBookUnit {
   volume: number;
 }
 
+export interface TickerPayload {
+  symbol: string;
+  price: number;
+  asks: OrderBookUnit[];
+  bids: OrderBookUnit[];
+  total_ask_volume: number;
+  total_bid_volume: number;
+  timestamp: number;
+}
+
 // 스토어 내부 상태 정의
 interface TickerState {
-  prices: Record<string, number>;
-  orderBooks: Record<
-    string,
-    {
-      asks: OrderBookUnit[];
-      bids: OrderBookUnit[];
-      totalAskVolume: number;
-      totalBidsVolume: number;
-    }
-  >;
-  setTickerData: (payload: any) => void;
+  tickerData: Record<string, { price: number; timestamp: number }>;
+
+  asks: OrderBookUnit[];
+  bids: OrderBookUnit[];
+  totalAskVolume: number;
+  totalBidVolume: number;
+
+  setTickerData: (payload: TickerPayload) => void;
 }
 
 export const useTickerStore = create<TickerState>((set) => ({
-  prices: {},
-  orderBooks: {},
+  tickerData: {},
+  asks: [],
+  bids: [],
+  totalAskVolume: 0,
+  totalBidVolume: 0,
+
   setTickerData: (payload) => {
     set((state) => ({
-      prices: { ...state.prices, [payload.symbol]: payload.price },
-      orderBooks: {
-        ...state.orderBooks,
+      tickerData: {
+        ...state.tickerData,
         [payload.symbol]: {
-          asks: payload.asks,
-          bids: payload.bids,
-          totalAskVolume: payload.total_ask_volume,
-          totalBidsVolume: payload.total_bid_volume,
+          price: payload.price,
+          timestamp: payload.timestamp,
         },
       },
+      asks: payload.asks,
+      bids: payload.bids,
+      totalAskVolume: payload.total_ask_volume,
+      totalBidVolume: payload.total_bid_volume,
     }));
   },
 }));

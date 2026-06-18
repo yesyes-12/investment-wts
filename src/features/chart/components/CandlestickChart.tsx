@@ -1,8 +1,6 @@
 // src/features/chart/components/CandlestickChart.tsx
-
-import { useParams } from "react-router-dom";
 import { useCandlestickChart } from "../hooks/useCandlestickChart";
-import { useTickerStore } from "../../market/stores/useTickerStore";
+import { useTickerStore } from "../../market";
 import { useEffect, useRef } from "react";
 
 const INITIAL_DATA = [
@@ -36,12 +34,13 @@ const INITIAL_DATA = [
   },
 ];
 
-export const CandlestickChart = () => {
-  const { symbol } = useParams<{ symbol: string }>();
-  const currentSymbol = symbol || "";
+interface CandlestickChartProps {
+  symbol: string;
+}
 
+export const CandlestickChart = ({ symbol }: CandlestickChartProps) => {
   const { chartContainerRef, updateCandle } = useCandlestickChart(INITIAL_DATA);
-  const livePrice = useTickerStore((state) => state.prices[currentSymbol]);
+  const livePrice = useTickerStore((state) => state.tickerData[symbol]?.price);
   const liveCandleRef = useRef({ ...INITIAL_DATA[INITIAL_DATA.length - 1] });
 
   useEffect(() => {
@@ -58,7 +57,7 @@ export const CandlestickChart = () => {
   }, [livePrice, updateCandle]);
 
   return (
-    <div className='w-full h-full min-h-[400px] bg-slate-900 overflow-hidden border border-slate-800 shadow-xl flex flex-col'>
+    <div className='w-full h-full flex flex-col'>
       <div ref={chartContainerRef} className='flex-1 w-full' />
     </div>
   );
